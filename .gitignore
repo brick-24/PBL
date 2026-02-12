@@ -1,0 +1,10 @@
+trained
+ppts
+papers
+nlp and classification codes
+mnist_images
+ignore
+data
+.venv
+__pycache__
+models
