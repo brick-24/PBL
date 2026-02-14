@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PBL Presentation | 2026</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <style>
+      /* Global text size bump + force white text */
+
+      html {
+        font-size: 17px; /* default is 16px — this makes EVERYTHING slightly bigger */
+      }
+
+      body {
+        color: #ffffff !important;
+      }
+
+      /* Override Tailwind gray text */
+      .text-slate-400,
+      .text-slate-500,
+      .text-slate-300,
+      .text-slate-600 {
+        color: #ffffff !important;
+      }
+
+      /* Slightly increase small text too */
+      .text-sm {
+        font-size: 0.95rem !important;
+      }
+
+      .text-xs {
+        font-size: 0.85rem !important;
+      }
+
+      #timerContainer {
+        z-index: 9999 !important;
+      }
+
+      @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&display=swap");
+      body {
+        background: #020617;
+        color: #f8fafc;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        scroll-behavior: smooth;
+      }
+      .glass {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .gradient-text {
+        background: linear-gradient(90deg, #60a5fa, #a855f7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      #timerContainer {
+        background: #fff;
+        color: #020617;
+        border: 3px solid #3b82f6;
+      }
+      .timer-warning {
+        animation: flicker 1s infinite;
+        border: 3px solid #ef4444 !important;
+      }
+      .timer-stop {
+        background: #991b1b !important;
+        color: white !important;
+      }
+      @keyframes flicker {
+        0%,
+        100% {
+          background: #fff;
+        }
+        50% {
+          background: #fca5a5;
+        }
+      }
+    </style>
+  </head>
+
+  <body onload="startTimer()">
+    <div
+      id="timerContainer"
+      class="fixed bottom-10 right-10 px-8 py-4 rounded-3xl flex gap-4"
+    >
+      <i
+        class="fas fa-hourglass-start text-blue-600 text-2xl"
+        id="timerIcon"
+      ></i>
+      <span id="displayTime" class="text-4xl font-black font-mono">00:00</span>
+    </div>
+
+    <nav class="fixed w-full z-50 glass px-8 py-4 flex justify-between">
+      <span class="font-black">PBL 2026</span>
+      <div class="hidden md:flex gap-6 text-xs uppercase">
+        <a href="#problem">Problem</a>
+        <a href="#methodology">Methodology</a>
+        <a href="#results">Results</a>
+        <a href="#team">Team</a>
+      </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 pt-40 space-y-32">
+      <section class="text-center">
+        <div class="text-xs mb-4">ID: 2427030127</div>
+
+        <h1 class="text-6xl font-extrabold gradient-text">
+          Optical Handwritten Digit Recognition Using Deep Learning Models
+        </h1>
+
+        <p
+          class="max-w-3xl mx-auto mt-6 text-slate-400 italic text-left border-l-2 pl-6"
+        >
+          Modern deep learning architectures such as VGG16, ResNet18, and Vision
+          Transformers can effectively classify handwritten digits from MNIST.
+          Residual connections and attention mechanisms are hypothesized to
+          outperform traditional CNN pipelines.
+        </p>
+      </section>
+
+      <section class="glass p-10 rounded-3xl">
+        <h2 class="text-3xl font-black mb-4">Abstract</h2>
+        <p class="text-slate-400 leading-relaxed">
+          This project evaluates VGG16, ResNet18, and Vision Transformer models
+          on the MNIST handwritten digit dataset using identical preprocessing
+          and training pipelines. Results demonstrate superior performance from
+          Vision Transformers, highlighting the benefit of global attention in
+          visual classification tasks.
+        </p>
+      </section>
+
+      <section id="problem" class="grid md:grid-cols-2 gap-12">
+        <div class="glass p-8 rounded-3xl">
+          <h2 class="text-2xl font-black mb-4">Problem Statement</h2>
+          <p class="text-slate-400">
+            Handwritten digit recognition suffers from variability in writing
+            styles, stroke thickness, and digit morphology. Traditional methods
+            fail to generalize well. This project benchmarks three pretrained
+            architectures to determine stability and accuracy under controlled
+            conditions.
+          </p>
+        </div>
+
+        <div class="glass p-8 rounded-3xl">
+          <h3 class="font-bold mb-2">Research Gap</h3>
+          <p class="text-slate-400">
+            Direct comparison of VGG16, ResNet18, and Vision Transformers under
+            identical transfer-learning pipelines is limited. This work closes
+            that gap.
+          </p>
+        </div>
+      </section>
+
+      <section class="glass p-12 rounded-3xl space-y-6">
+        <h2 class="text-3xl font-black text-center uppercase tracking-tight">
+          MNIST Dataset
+        </h2>
+
+        <p class="text-slate-400 leading-relaxed text-justify">
+          The Modified National Institute of Standards and Technology (MNIST)
+          dataset is a widely used benchmark in computer vision and machine
+          learning, particularly for evaluating handwritten digit recognition
+          systems. It consists of 70,000 grayscale images of handwritten digits
+          ranging from 0 to 9, collected from various writers to ensure
+          diversity in writing styles, stroke thickness, curvature, and digit
+          structure.
+        </p>
+
+        <p class="text-slate-400 leading-relaxed text-justify">
+          The dataset is divided into 60,000 training samples and 10,000 testing
+          samples. Each original image has a resolution of 28×28 pixels and
+          contains a single digit centered within the frame. Despite its
+          apparent simplicity, MNIST presents several challenges such as
+          overlapping digit shapes (for example, 4 vs 9 or 5 vs 6), inconsistent
+          handwriting patterns, and variations in scale and alignment.
+        </p>
+
+        <p class="text-slate-400 leading-relaxed text-justify">
+          For compatibility with pretrained deep learning architectures
+          originally designed for ImageNet, all MNIST images were resized to
+          224×224 pixels and converted from single-channel grayscale to
+          three-channel grayscale. Pixel values were normalized to the range
+          [-1, 1] to match ImageNet preprocessing standards. This transformation
+          enables effective transfer learning by allowing pretrained
+          convolutional and transformer-based models to extract meaningful
+          visual features from digit images.
+        </p>
+
+        <p class="text-slate-400 leading-relaxed text-justify">
+          Each image represents one of ten digit classes (0–9), providing a
+          balanced multiclass classification problem. MNIST serves as an ideal
+          experimental platform due to its standardized splits, extensive prior
+          research, and reproducibility across studies. In this project, the
+          dataset is used to comparatively evaluate traditional convolutional
+          networks, residual architectures, and transformer-based vision models
+          under identical training conditions.
+        </p>
+
+        <p class="text-slate-500 italic text-sm text-center pt-4">
+          Dataset Summary: 70,000 images • 10 classes • 28×28 grayscale •
+          resized to 224×224 • RGB conversion • normalized input
+        </p>
+      </section>
+
+      <section class="glass p-12 rounded-3xl space-y-12">
+        <h2 class="text-3xl font-black text-center uppercase tracking-tight">
+          Sample Digits from MNIST
+        </h2>
+
+        <p class="text-slate-400 text-center max-w-3xl mx-auto">
+          The MNIST dataset contains significant variation in handwriting
+          styles. Below are representative samples illustrating intra-class
+          diversity in stroke thickness, curvature, and digit structure.
+        </p>
+
+        <!-- DIGIT 7 -->
+        <div class="space-y-6">
+          <h3
+            class="text-center text-blue-400 font-bold uppercase tracking-widest text-sm"
+          >
+            Digit: 7
+          </h3>
+
+          <div
+            class="grid grid-cols-2 md:grid-cols-4 gap-8 justify-items-center"
+          >
+            <div
+              class="bg-white rounded-2xl p-6 shadow-xl hover:-translate-y-2 transition"
+            >
+              <img
+                src="Images/seven1.png"
+                class="w-24 h-24 object-contain mx-auto"
+              />
+            </div>
+
+            <div
+              class="bg-white rounded-2xl p-6 shadow-xl hover:-translate-y-2 transition"
+            >
+              <img
+                src="Images/seven2.png"
+                class="w-24 h-24 object-contain mx-auto"
+              />
+            </div>
+
+            <div
+              class="bg-white rounded-2xl p-6 shadow-xl hover:-translate-y-2 transition"
+            >
+              <img
+                src="Images/seven3.png"
+                class="w-24 h-24 object-contain mx-auto"
+              />
+            </div>
+
+            <div
+              class="bg-white rounded-2xl p-6 shadow-xl hover:-translate-y-2 transition"
+            >
+              <img
+                src="Images/seven4.png"
+                class="w-24 h-24 object-contain mx-auto"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- DIGIT 4 -->
+        <div class="space-y-6 pt-10">
+          <h3
+            class="text-center text-purple-400 font-bold uppercase tracking-widest text-sm"
+          >
+            Digit: 4
+          </h3>
+
+          <div
+            class="grid grid-cols-2 md:grid-cols-4 gap-8 justify-items-center"
+          >
+            <div
+              class="bg-white/90 rounded-2xl p-6 shadow-xl border border-white/20"
+            >
+              <img
+                src="Images/four1.png"
+                class="w-24 h-24 object-contain mx-auto"
+              />
+            </div>
+
+            <div
+              class="bg-white/90 rounded-2xl p-6 shadow-xl border border-white/20"
+            >
+              <img
+                src="Images/four2.png"
+                class="w-24 h-24 object-contain mx-auto"
+              />
+            </div>
+
+            <div
+              class="bg-white/90 rounded-2xl p-6 shadow-xl border border-white/20"
+            >
+              <img
+                src="Images/four3.png"
+                class="w-24 h-24 object-contain mx-auto"
+              />
+            </div>
+
+            <div
+              class="bg-white/90 rounded-2xl p-6 shadow-xl border border-white/20"
+            >
+              <img
+                src="Images/four4.png"
+                class="w-24 h-24 object-contain mx-auto"
+              />
+            </div>
+          </div>
+
+          <p class="text-slate-500 text-center text-sm italic pt-6">
+            Additional digit samples may be added to further illustrate
+            intra-class diversity.
+          </p>
+        </div>
+      </section>
+
+      <section class="glass p-12 rounded-3xl space-y-8">
+        <h2 class="text-3xl font-black text-center uppercase tracking-tight">
+          Model Architecture Comparison
+        </h2>
+
+        <p class="text-slate-400 text-center max-w-3xl mx-auto">
+          This project evaluates three fundamentally different deep learning
+          paradigms: a traditional convolutional network (VGG16), a residual
+          convolutional network (ResNet18), and an attention-based Vision
+          Transformer. The table below summarizes their architectural
+          characteristics and practical trade-offs.
+        </p>
+
+        <div class="overflow-x-auto pt-6">
+          <table class="w-full border-collapse text-sm text-slate-300">
+            <thead>
+              <tr class="border-b border-white/20 text-slate-100">
+                <th class="py-3 px-4 text-left">Aspect</th>
+                <th class="py-3 px-4 text-center">VGG16</th>
+                <th class="py-3 px-4 text-center">ResNet18</th>
+                <th class="py-3 px-4 text-center">Vision Transformer</th>
+              </tr>
+            </thead>
+
+            <tbody class="divide-y divide-white/10">
+              <tr>
+                <td class="py-3 px-4">Feature learning</td>
+                <td class="text-center">Local spatial features</td>
+                <td class="text-center">Local + residual features</td>
+                <td class="text-center">Global context features</td>
+              </tr>
+
+              <tr>
+                <td class="py-3 px-4">Typical parameters</td>
+                <td class="text-center">~138M</td>
+                <td class="text-center">~11M</td>
+                <td class="text-center">~86M (ViT-Base)</td>
+              </tr>
+
+              <tr>
+                <td class="py-3 px-4">Training stability</td>
+                <td class="text-center">Moderate</td>
+                <td class="text-center">High</td>
+                <td class="text-center">Moderate on small datasets</td>
+              </tr>
+
+              <tr>
+                <td class="py-3 px-4">Training time</td>
+                <td class="text-center">High</td>
+                <td class="text-center">Medium</td>
+                <td class="text-center">High</td>
+              </tr>
+
+              <tr>
+                <td class="py-3 px-4">Compute cost</td>
+                <td class="text-center">High</td>
+                <td class="text-center">Medium</td>
+                <td class="text-center">High</td>
+              </tr>
+
+              <tr>
+                <td class="py-3 px-4">Data efficiency</td>
+                <td class="text-center">Strong on small datasets</td>
+                <td class="text-center">Strong on small datasets</td>
+                <td class="text-center">Weak without large pretraining</td>
+              </tr>
+
+              <tr>
+                <td class="py-3 px-4">Primary limitation</td>
+                <td class="text-center">Gradient degradation</td>
+                <td class="text-center">Limited global context</td>
+                <td class="text-center">Heavy data & compute demand</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="text-slate-500 text-sm italic text-center pt-4">
+          ResNet18 provides the best stability–efficiency tradeoff, while Vision
+          Transformers benefit from global attention at the cost of higher
+          computational requirements.
+        </p>
+      </section>
+
+      <section id="methodology" class="space-y-10">
+        <h2 class="text-4xl font-black text-center">Methodology</h2>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="glass p-6 text-center">
+            <h3 class="font-bold mb-2">Dataset</h3>
+            <p class="text-sm text-slate-400">
+              MNIST (70,000 images). Resized to 224×224, converted to RGB,
+              normalized to [-1,1].
+            </p>
+          </div>
+
+          <div class="glass p-6 text-center">
+            <h3 class="font-bold mb-2">Models</h3>
+            <p class="text-sm text-slate-400">
+              VGG16, ResNet18, Vision Transformer with replaced 10-class heads.
+            </p>
+          </div>
+
+          <div class="glass p-6 text-center bg-green-500/10">
+            <a
+              href="https://github.com/brick-24/PBL"
+              target="_blank"
+              class="px-6 py-2 bg-green-600 rounded-full text-xs font-black"
+            >
+              VIEW CODE
+            </a>
+          </div>
+        </div>
+
+        <img
+          src="Images/architecture.png"
+          class="mx-auto rounded-2xl mt-8"
+          alt="System Architecture"
+        />
+      </section>
+
+      <section class="glass p-12 rounded-3xl space-y-10">
+        <h2 class="text-3xl font-black text-center uppercase tracking-tight">
+          Training Analysis & Experimental Evidence
+        </h2>
+
+        <p class="text-slate-400 text-center max-w-3xl mx-auto">
+          This section presents training loss curves, test accuracy plots,
+          confusion matrices, and implementation snapshots for VGG16, ResNet18,
+          and Vision Transformer models trained on MNIST.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="text-center space-y-3">
+            <h3 class="font-bold text-sm text-blue-400">ResNet18</h3>
+            <img src="Images/Res.png" class="rounded-xl shadow-lg" />
+          </div>
+
+          <div class="text-center space-y-3">
+            <h3 class="font-bold text-sm text-purple-400">VGG16</h3>
+            <img src="Images/vgg.png" class="rounded-xl shadow-lg" />
+          </div>
+
+          <div class="text-center space-y-3">
+            <h3 class="font-bold text-sm">Vision Transformer</h3>
+            <img src="Images/ViT.png" class="rounded-xl shadow-lg" />
+          </div>
+        </div>
+
+        <div class="pt-10 text-center space-y-4">
+          <h3
+            class="font-bold uppercase tracking-widest text-xs text-slate-400"
+          >
+            Experimental Environment
+          </h3>
+
+          <img
+            src="Images/working.png"
+            class="mx-auto rounded-2xl shadow-xl max-w-4xl"
+          />
+
+          <p class="text-slate-500 text-sm italic">
+            Model training, evaluation, and visualization conducted using
+            PyTorch in Jupyter/VS Code environment.
+          </p>
+        </div>
+      </section>
+
+      <section id="results" class="glass p-12 rounded-3xl">
+        <h2 class="text-3xl font-black text-center mb-8">Results</h2>
+
+        <div class="h-[420px] mb-12">
+          <canvas id="resultsChart"></canvas>
+        </div>
+
+        <p class="text-slate-400">
+          Final Accuracies: VGG16 – 98.53%, ResNet18 – 99.22%, Vision
+          Transformer – 99.33%.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-6 mt-10">
+          <img src="Images/vgg_matrix.png" class="rounded-xl" />
+          <img src="Images/resnet_matrix.png" class="rounded-xl" />
+          <img src="Images/ViT_matrix.png" class="rounded-xl" />
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="pt-12 space-y-6">
+          <h3
+            class="text-center text-blue-400 font-bold uppercase tracking-widest text-sm"
+          >
+            Comparison with Existing Methods
+          </h3>
+
+          <img
+            src="Images/table.png"
+            class="mx-auto rounded-2xl shadow-2xl border border-white/10 max-w-4xl"
+          />
+
+          <p
+            class="text-slate-500 text-center text-sm italic max-w-3xl mx-auto"
+          >
+            Table II: Comparison of MNIST classification accuracy with existing
+            methods and results obtained in this study.
+          </p>
+        </div>
+      </section>
+
+      <section class="glass p-12 rounded-3xl space-y-6">
+        <h2 class="text-3xl font-black text-center uppercase tracking-tight">
+          Research Paper & Publication
+        </h2>
+
+        <p
+          class="text-slate-400 leading-relaxed text-justify max-w-4xl mx-auto"
+        >
+          Based on the experimental findings and comparative analysis presented
+          in this project, a formal research paper has been authored in
+          collaboration with
+          <span class="text-slate-200 font-semibold">Dr. Tarun Jain</span>. The
+          paper documents the methodology, architectural comparisons, training
+          behavior, and performance evaluation of VGG16, ResNet18, and Vision
+          Transformer models on the MNIST dataset.
+        </p>
+
+        <p
+          class="text-slate-400 leading-relaxed text-justify max-w-4xl mx-auto"
+        >
+          The manuscript is currently under the publication process, with Dr.
+          Tarun Jain overseeing submission and review. This work aims to
+          contribute empirical insights into transfer learning and
+          attention-based vision models for handwritten digit recognition.
+        </p>
+
+        <p class="text-slate-500 italic text-center pt-4">
+          This project therefore extends beyond academic coursework and
+          represents an ongoing research effort toward peer-reviewed
+          publication.
+        </p>
+      </section>
+
+      <section class="glass p-10 rounded-3xl">
+        <h2 class="text-3xl font-black mb-4">Conclusion & Future Work</h2>
+        <p class="text-slate-400">
+          Vision Transformers achieved the highest accuracy, demonstrating the
+          value of attention-based architectures. Future work includes larger
+          datasets, hyperparameter optimization, and deployment on edge devices.
+        </p>
+      </section>
+
+      <section class="glass p-10 rounded-3xl">
+        <h2 class="text-2xl font-black mb-4">References</h2>
+
+        <ol
+          class="text-slate-400 text-sm space-y-3 list-decimal pl-6 leading-relaxed"
+        >
+          <li>
+            V. Agrawal, J. Jagtap, and M. P. Kantipudi, “Exploration of
+            advancements in handwritten document recognition techniques,”
+            Intelligent Systems with Applications, vol. 22, p. 200358, 2024.
+          </li>
+
+          <li>
+            L. Deng, “The MNIST database of handwritten digit images for machine
+            learning research,” IEEE Signal Processing Magazine, vol. 29, no. 6,
+            pp. 141–142, 2012.
+          </li>
+
+          <li>
+            Y. LeCun, L. Bottou, Y. Bengio, and P. Haffner, “Gradient-based
+            learning applied to document recognition,” Proceedings of the IEEE,
+            vol. 86, no. 11, pp. 2278–2324, 2002.
+          </li>
+
+          <li>
+            K. He, X. Zhang, S. Ren, and J. Sun, “Deep residual learning for
+            image recognition,” Proceedings of CVPR, pp. 770–778, 2016.
+          </li>
+
+          <li>
+            K. Simonyan and A. Zisserman, “Very deep convolutional networks for
+            large-scale image recognition,” arXiv:1409.1556, 2014.
+          </li>
+
+          <li>
+            A. Dosovitskiy et al., “An image is worth 16×16 words: Transformers
+            for image recognition at scale,” arXiv:2010.11929, 2020.
+          </li>
+
+          <li>
+            Y. LeCun, L. Bottou, Y. Bengio, and P. Haffner, “Gradient-based
+            learning applied to document recognition,” Proceedings of the IEEE,
+            vol. 86, no. 11, pp. 2278–2324, 1998.
+          </li>
+
+          <li>
+            S. S. Kadam, A. C. Adamuthe, and A. B. Patil, “CNN model for image
+            classification on MNIST and Fashion-MNIST dataset,” Journal of
+            Scientific Research, vol. 64, no. 2, pp. 374–384, 2020.
+          </li>
+
+          <li>
+            S. Tabik et al., “A snapshot of image preprocessing for CNNs: Case
+            study of MNIST,” International Journal of Computational Intelligence
+            Systems, vol. 10, no. 1, pp. 555–568, 2017.
+          </li>
+
+          <li>
+            L. Breiman, “Bagging predictors,” Machine Learning, vol. 24, no. 2,
+            pp. 123–140, 1996.
+          </li>
+
+          <li>
+            K. Taghandiki, “Handwritten digit recognition on MNIST using
+            transfer learning with VGG16,” Journal of Skill Sciences and
+            Creativity, vol. 1, no. 2, pp. 45–68, 2024.
+          </li>
+
+          <li>
+            T. Hastie, R. Tibshirani, and J. Friedman, The Elements of
+            Statistical Learning, 2nd ed., Springer, 2009.
+          </li>
+
+          <li>
+            J. Yosinski et al., “How transferable are features in deep neural
+            networks?” NeurIPS, pp. 3320–3328, 2014.
+          </li>
+        </ol>
+      </section>
+
+      <section id="team" class="text-center">
+        <div class="glass p-8 rounded-3xl">
+          <p class="text-xs text-blue-400">Project Guide</p>
+          <p class="font-black text-xl">Dr. Tarun Jain</p>
+        </div>
+
+        <div class="glass p-8 rounded-3xl mt-6">
+          <p class="text-xs text-slate-400">Team Member</p>
+          <p class="font-black text-xl">Raghav Sethi</p>
+          <p class="text-xs text-slate-500">2427030127</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="py-10 text-center text-xs text-slate-600">
+      Manipal University Jaipur — CSE — 2026
+    </footer>
+
+    <script>
+      let sec = 0;
+      function startTimer() {
+        setInterval(() => {
+          sec++;
+          let m = Math.floor(sec / 60);
+          let s = sec % 60;
+          displayTime.innerText = `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
+        }, 1000);
+      }
+
+      new Chart(resultsChart, {
+        type: "bar",
+        data: {
+          labels: ["VGG16", "ResNet18", "Vision Transformer"],
+          datasets: [
+            {
+              data: [98.53, 99.22, 99.33],
+              borderRadius: 14,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: {
+              min: 97,
+              max: 100,
+              ticks: {
+                callback: (v) => v + "%",
+              },
+              grid: { color: "#ffffff10" },
+            },
+            x: {
+              grid: { display: false },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
