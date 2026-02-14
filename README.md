@@ -1,3 +1,5 @@
+https://brick-24.github.io/PBL/
+
 # MNIST Digit Classification
 
 This project uses pretrained deep learning models to classify handwritten digits from the MNIST dataset.
